@@ -32,6 +32,7 @@ const apodExplanation = document.querySelector("#apod-explanation");
 const apodSource = document.querySelector("#apod-source");
 const apodButton = document.querySelector("#apod-button");
 const nasaApiKey = import.meta.env?.VITE_NASA_API_KEY || "DEMO_KEY";
+const NASA_REQUEST_TIMEOUT_MS = 8000;
 
 const quotes = [
   "Small steps still move your orbit.",
@@ -207,19 +208,25 @@ function renderLinks() {
 
 async function loadApod(random = false) {
   apodButton.disabled = true;
+  apodButton.setAttribute("aria-busy", "true");
   apodStatus.hidden = false;
   apodStatus.textContent = random ? "Searching NASA’s archive…" : "Loading NASA’s daily space image…";
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), NASA_REQUEST_TIMEOUT_MS);
 
   try {
     const endpoint = random
       ? `https://api.nasa.gov/planetary/apod?api_key=${encodeURIComponent(nasaApiKey)}&count=1`
       : `https://api.nasa.gov/planetary/apod?api_key=${encodeURIComponent(nasaApiKey)}`;
-    const response = await fetch(endpoint);
+    const response = await fetch(endpoint, { signal: controller.signal });
 
     if (!response.ok) throw new Error(`NASA returned ${response.status}`);
 
     const payload = await response.json();
     const apod = Array.isArray(payload) ? payload[0] : payload;
+    if (!apod || !apod.title || !apod.explanation || !apod.url) {
+      throw new Error("NASA returned incomplete APOD data");
+    }
     apodTitle.textContent = apod.title || "NASA space signal";
     apodDate.textContent = apod.date || "NASA APOD";
     apodExplanation.textContent = apod.explanation || "NASA did not send an explanation for this image.";
@@ -240,9 +247,13 @@ async function loadApod(random = false) {
   } catch (error) {
     console.warn("Focus Orbit could not load NASA APOD.", error);
     apodContent.hidden = true;
-    apodStatus.textContent = "NASA’s signal is unavailable right now. Try again in a moment.";
+    apodStatus.textContent = error?.name === "AbortError"
+      ? "NASA’s signal took too long. Try again in a moment."
+      : "NASA’s signal is unavailable right now. Try again in a moment.";
   } finally {
+    window.clearTimeout(timeoutId);
     apodButton.disabled = false;
+    apodButton.removeAttribute("aria-busy");
   }
 }
 
