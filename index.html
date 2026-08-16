@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Focus Orbit is a calm, local-first new-tab dashboard for students."
+    />
+    <title>Focus Orbit — Student New Tab</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to dashboard</a>
+    <div class="star-field" aria-hidden="true"></div>
+
+    <main id="main-content" class="shell">
+      <header class="topbar">
+        <a class="brand" href="#main-content" aria-label="Focus Orbit dashboard home">
+          <span class="brand-mark" aria-hidden="true">◌</span>
+          <span>Focus Orbit</span>
+        </a>
+        <button id="theme-toggle" class="icon-button" type="button" aria-label="Switch color theme">
+          <span id="theme-icon" aria-hidden="true">☼</span>
+        </button>
+      </header>
+
+      <section class="hero" aria-labelledby="greeting">
+        <div>
+          <p id="date-display" class="eyebrow">Loading date</p>
+          <h1 id="greeting">Good evening, explorer.</h1>
+          <p class="hero-copy">A small orbit for your most important work.</p>
+        </div>
+        <div class="clock-orbit" aria-label="Current time">
+          <span class="orbit-ring ring-one" aria-hidden="true"></span>
+          <span class="orbit-ring ring-two" aria-hidden="true"></span>
+          <time id="clock" datetime="">00:00</time>
+        </div>
+      </section>
+
+      <section class="dashboard-grid" aria-label="Focus dashboard">
+        <article class="panel focus-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Today's orbit</p>
+              <h2>Daily focus task</h2>
+            </div>
+            <span class="panel-icon" aria-hidden="true">◎</span>
+          </div>
+          <label class="sr-only" for="focus-input">Your daily focus task</label>
+          <input
+            id="focus-input"
+            class="focus-input"
+            type="text"
+            maxlength="120"
+            placeholder="What deserves your attention?"
+            autocomplete="off"
+          />
+          <p id="focus-status" class="helper-text" aria-live="polite">Saved only in this browser.</p>
+        </article>
+
+        <article class="panel quote-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Signal boost</p>
+              <h2>One thought</h2>
+            </div>
+            <span class="panel-icon" aria-hidden="true">✦</span>
+          </div>
+          <blockquote id="quote-text">Small steps still move your orbit.</blockquote>
+          <button id="quote-button" class="text-button" type="button">New quote <span aria-hidden="true">↗</span></button>
+        </article>
+
+        <article class="panel task-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Mission control</p>
+              <h2>Today’s list</h2>
+            </div>
+            <span id="task-count" class="count-badge" aria-live="polite">0 tasks</span>
+          </div>
+          <form id="task-form" class="task-form">
+            <label class="sr-only" for="task-input">Add a task</label>
+            <input id="task-input" type="text" maxlength="120" placeholder="Add a tiny next step" autocomplete="off" required />
+            <button type="submit">Add task</button>
+          </form>
+          <p id="empty-state" class="empty-state">Your orbit is clear. Add one tiny next step.</p>
+          <ul id="task-list" class="task-list" aria-label="Your to-do list"></ul>
+        </article>
+
+        <article class="panel links-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Launchpad</p>
+              <h2>Quick links</h2>
+            </div>
+            <span class="panel-icon" aria-hidden="true">↗</span>
+          </div>
+          <div id="quick-links" class="quick-links" aria-label="Quick links"></div>
+          <form id="link-form" class="link-form">
+            <label class="sr-only" for="link-label">Quick link label</label>
+            <input id="link-label" type="text" maxlength="24" placeholder="Label" required />
+            <label class="sr-only" for="link-url">Quick link address</label>
+            <input id="link-url" type="url" placeholder="https://example.com" required />
+            <button type="submit">Save link</button>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
