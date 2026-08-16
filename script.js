@@ -206,9 +206,17 @@ function renderLinks() {
   });
 }
 
+function setApodButtonLabel(label) {
+  const arrow = document.createElement("span");
+  arrow.textContent = "↗";
+  arrow.setAttribute("aria-hidden", "true");
+  apodButton.replaceChildren(`${label} `, arrow);
+}
+
 async function loadApod(random = false) {
   apodButton.disabled = true;
   apodButton.setAttribute("aria-busy", "true");
+  setApodButtonLabel(random ? "Searching NASA…" : "Loading NASA…");
   apodStatus.hidden = false;
   apodStatus.textContent = random ? "Searching NASA’s archive…" : "Loading NASA’s daily space image…";
   const controller = new AbortController();
@@ -244,12 +252,14 @@ async function loadApod(random = false) {
 
     apodContent.hidden = false;
     apodStatus.hidden = true;
+    setApodButtonLabel("Load another space signal");
   } catch (error) {
     console.warn("Focus Orbit could not load NASA APOD.", error);
     apodContent.hidden = true;
     apodStatus.textContent = error?.name === "AbortError"
       ? "NASA’s signal took too long. Try again in a moment."
       : "NASA’s signal is unavailable right now. Try again in a moment.";
+    setApodButtonLabel("Try again");
   } finally {
     window.clearTimeout(timeoutId);
     apodButton.disabled = false;
