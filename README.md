@@ -14,7 +14,7 @@ Focus Orbit is an original, space-inspired new-tab dashboard for students. It is
 
 ## Screenshot
 
-_A real screenshot of the deployed site will be added after deployment._
+A real screenshot was captured during the final public deployment check. Visit the live dashboard to see the current interface: [Focus Orbit live demo](https://aaravkatiyar55-gif.github.io/focus-orbit-new-tab/).
 
 ## Run it locally
 
@@ -33,7 +33,7 @@ Using a local server is important because browser `localStorage` behavior for `f
 
 ## Deployment
 
-Deployment URL: **pending — this project has not been deployed yet.**
+Live demo: [https://aaravkatiyar55-gif.github.io/focus-orbit-new-tab/](https://aaravkatiyar55-gif.github.io/focus-orbit-new-tab/)
 
 ## Project structure
 
@@ -43,6 +43,7 @@ focus-orbit-new-tab/
 ├── style.css    # responsive orbit-inspired visual system
 ├── script.js    # clock, localStorage, to-dos, links, theme, and quotes
 ├── README.md
+├── .wakatime-project # labels future editor time as this project only
 └── .gitignore
 ```
 
@@ -58,5 +59,5 @@ I used ChatGPT/Codex as a learning and coding assistant for planning, debugging,
 
 ## Current verification
 
-- Local browser test: clock, greeting, focus-task persistence, quote button, theme persistence, to-do add/complete/delete/persistence, and quick-link persistence.
-- Deployment and fresh public-URL testing are still pending.
+- Local browser test: clock, greeting, focus-task persistence, quote button, theme persistence, to-do add/complete/delete/persistence, responsive mobile task-entry layout, and quick-link persistence.
+- Public deployment test: a fresh browser tab loaded the live URL; focus task, to-do list, and theme persisted after refresh, and the quote button changed its text.
