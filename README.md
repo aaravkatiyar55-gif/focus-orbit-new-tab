@@ -19,18 +19,22 @@ A real screenshot was captured during the final public deployment check. Visit t
 
 ## Run it locally
 
-No build step or package install is needed.
-
 1. Open this folder in a code editor.
-2. Start a local server from the folder:
+2. Install the small Vite development tool:
 
    ```bash
-   python -m http.server 4173
+   npm install
    ```
 
-3. Open [http://127.0.0.1:4173](http://127.0.0.1:4173) in a browser.
+3. Start the local development server:
 
-Using a local server is important because browser `localStorage` behavior for `file://` pages is not reliable across browsers.
+   ```bash
+   npm run dev
+   ```
+
+4. Open the local URL shown in the terminal, usually [http://127.0.0.1:5173](http://127.0.0.1:5173).
+
+Vite keeps this a plain HTML, CSS, and JavaScript project while providing a reliable local server and production build command. For a production build, run `npm run build`.
 
 ## Deployment
 

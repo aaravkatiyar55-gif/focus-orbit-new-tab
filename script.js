@@ -31,6 +31,7 @@ const apodTitle = document.querySelector("#apod-title");
 const apodExplanation = document.querySelector("#apod-explanation");
 const apodSource = document.querySelector("#apod-source");
 const apodButton = document.querySelector("#apod-button");
+const nasaApiKey = import.meta.env?.VITE_NASA_API_KEY || "DEMO_KEY";
 
 const quotes = [
   "Small steps still move your orbit.",
@@ -211,8 +212,8 @@ async function loadApod(random = false) {
 
   try {
     const endpoint = random
-      ? "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1"
-      : "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+      ? `https://api.nasa.gov/planetary/apod?api_key=${encodeURIComponent(nasaApiKey)}&count=1`
+      : `https://api.nasa.gov/planetary/apod?api_key=${encodeURIComponent(nasaApiKey)}`;
     const response = await fetch(endpoint);
 
     if (!response.ok) throw new Error(`NASA returned ${response.status}`);
