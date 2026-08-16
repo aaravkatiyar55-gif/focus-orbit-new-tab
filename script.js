@@ -23,6 +23,14 @@ const quickLinks = document.querySelector("#quick-links");
 const linkForm = document.querySelector("#link-form");
 const linkLabel = document.querySelector("#link-label");
 const linkUrl = document.querySelector("#link-url");
+const apodStatus = document.querySelector("#apod-status");
+const apodContent = document.querySelector("#apod-content");
+const apodImage = document.querySelector("#apod-image");
+const apodDate = document.querySelector("#apod-date");
+const apodTitle = document.querySelector("#apod-title");
+const apodExplanation = document.querySelector("#apod-explanation");
+const apodSource = document.querySelector("#apod-source");
+const apodButton = document.querySelector("#apod-button");
 
 const quotes = [
   "Small steps still move your orbit.",
@@ -196,6 +204,47 @@ function renderLinks() {
   });
 }
 
+async function loadApod(random = false) {
+  apodButton.disabled = true;
+  apodStatus.hidden = false;
+  apodStatus.textContent = random ? "Searching NASA’s archive…" : "Loading NASA’s daily space image…";
+
+  try {
+    const endpoint = random
+      ? "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=1"
+      : "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+    const response = await fetch(endpoint);
+
+    if (!response.ok) throw new Error(`NASA returned ${response.status}`);
+
+    const payload = await response.json();
+    const apod = Array.isArray(payload) ? payload[0] : payload;
+    apodTitle.textContent = apod.title || "NASA space signal";
+    apodDate.textContent = apod.date || "NASA APOD";
+    apodExplanation.textContent = apod.explanation || "NASA did not send an explanation for this image.";
+    apodSource.href = apod.url || "https://apod.nasa.gov/";
+
+    if (apod.media_type === "image" && apod.url) {
+      apodImage.src = apod.url;
+      apodImage.alt = apod.title ? `NASA Astronomy Picture of the Day: ${apod.title}` : "NASA Astronomy Picture of the Day";
+      apodImage.hidden = false;
+    } else {
+      apodImage.removeAttribute("src");
+      apodImage.alt = "";
+      apodImage.hidden = true;
+    }
+
+    apodContent.hidden = false;
+    apodStatus.hidden = true;
+  } catch (error) {
+    console.warn("Focus Orbit could not load NASA APOD.", error);
+    apodContent.hidden = true;
+    apodStatus.textContent = "NASA’s signal is unavailable right now. Try again in a moment.";
+  } finally {
+    apodButton.disabled = false;
+  }
+}
+
 function initialiseCore() {
   focusInput.value = readValue(STORAGE_KEYS.focus);
   setTheme(readValue(STORAGE_KEYS.theme, "night"));
@@ -203,6 +252,7 @@ function initialiseCore() {
   window.setInterval(updateTime, 1000);
   renderTasks();
   renderLinks();
+  loadApod();
 }
 
 function saveFocusTask() {
@@ -220,6 +270,7 @@ themeToggle.addEventListener("click", () => {
 });
 
 quoteButton.addEventListener("click", setRandomQuote);
+apodButton.addEventListener("click", () => loadApod(true));
 
 taskForm.addEventListener("submit", (event) => {
   event.preventDefault();

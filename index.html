@@ -77,6 +77,27 @@
           <button id="quote-button" class="text-button" type="button">New quote <span aria-hidden="true">↗</span></button>
         </article>
 
+        <article class="panel apod-panel" aria-labelledby="apod-heading">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">NASA signal</p>
+              <h2 id="apod-heading">Picture of the day</h2>
+            </div>
+            <span class="panel-icon" aria-hidden="true">✦</span>
+          </div>
+          <p id="apod-status" class="helper-text" aria-live="polite">Loading NASA’s daily space image…</p>
+          <div id="apod-content" class="apod-content" hidden>
+            <img id="apod-image" class="apod-image" alt="" />
+            <div>
+              <p id="apod-date" class="eyebrow"></p>
+              <h3 id="apod-title"></h3>
+              <p id="apod-explanation" class="apod-explanation"></p>
+              <a id="apod-source" class="text-button" href="https://apod.nasa.gov/" target="_blank" rel="noreferrer">Open at NASA <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+          <button id="apod-button" class="text-button" type="button">Load another space signal <span aria-hidden="true">↗</span></button>
+        </article>
+
         <article class="panel task-panel">
           <div class="panel-heading">
             <div>
