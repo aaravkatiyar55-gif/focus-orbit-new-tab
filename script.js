@@ -205,10 +205,13 @@ function initialiseCore() {
   renderLinks();
 }
 
-focusInput.addEventListener("input", () => {
+function saveFocusTask() {
   const wasSaved = saveValue(STORAGE_KEYS.focus, focusInput.value.trim());
   focusStatus.textContent = wasSaved ? "Saved in this browser." : "Saving is blocked by this browser.";
-});
+}
+
+focusInput.addEventListener("input", saveFocusTask);
+focusInput.addEventListener("change", saveFocusTask);
 
 themeToggle.addEventListener("click", () => {
   const nextTheme = document.body.dataset.theme === "day" ? "night" : "day";
