@@ -2,6 +2,10 @@
 
 Focus Orbit is an original, space-inspired new-tab dashboard for students. It is designed as a calm home base for checking the time, choosing one focus task, keeping a small local to-do list, and opening useful study links.
 
+## Design direction
+
+The interface is designed as a student study desk with an observatory-notebook feel: a task-first asymmetric layout, flat outlined surfaces, a practical time station, and small numbered sections instead of a generic card grid. The visual system uses a restrained ink, cyan, amber, and coral palette so the focus task and to-do list remain the main things to notice.
+
 ## What it does
 
 - Shows a live clock, date, and time-aware greeting.
@@ -61,7 +65,7 @@ focus-orbit-new-tab/
 
 ## AI usage statement
 
-I used ChatGPT/Codex as a learning and coding assistant for planning, debugging, accessibility checks, API integration, and reviewing the HTML, CSS, and JavaScript. The project concept, feature choices, testing steps, and final decisions were reviewed by me.
+I used ChatGPT/Codex as a learning and coding assistant for planning, debugging, accessibility checks, API integration, and reviewing the HTML, CSS, and JavaScript. I chose the project concept and feature goals, reviewed feedback on the project, and used that feedback to revise the visual layout and styling. The final repository and devlogs should be read as an honest record of the assistance used; I do not claim that all code was written without AI help.
 
 ## Current verification
 

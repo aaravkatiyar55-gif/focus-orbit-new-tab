@@ -18,29 +18,34 @@
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to dashboard</a>
-    <div class="star-field" aria-hidden="true"></div>
+    <div class="orbital-grid" aria-hidden="true"></div>
 
     <main id="main-content" class="shell">
       <header class="topbar">
         <a class="brand" href="#main-content" aria-label="Focus Orbit dashboard home">
-          <span class="brand-mark" aria-hidden="true">◌</span>
-          <span>Focus Orbit</span>
+          <span class="brand-mark" aria-hidden="true">FO</span>
+          <span class="brand-copy">
+            <span>Focus Orbit</span>
+            <span class="brand-subtitle">student study desk</span>
+          </span>
         </a>
         <button id="theme-toggle" class="icon-button" type="button" aria-label="Switch color theme">
           <span id="theme-icon" aria-hidden="true">☼</span>
+          <span class="theme-label">Theme</span>
         </button>
       </header>
 
       <section class="hero" aria-labelledby="greeting">
-        <div>
+        <div class="hero-copy-block">
+          <p class="hero-index">FO-01 / TODAY</p>
           <p id="date-display" class="eyebrow">Loading date</p>
           <h1 id="greeting">Good evening, explorer.</h1>
-          <p class="hero-copy">A small orbit for your most important work.</p>
+          <p class="hero-copy">Pick one useful task, keep the rest small, and make this tab earn its place.</p>
         </div>
-        <div class="clock-orbit" aria-label="Current time">
-          <span class="orbit-ring ring-one" aria-hidden="true"></span>
-          <span class="orbit-ring ring-two" aria-hidden="true"></span>
+        <div class="clock-station" aria-label="Current time">
+          <span class="clock-label">Local time</span>
           <time id="clock" datetime="">00:00</time>
+          <span class="clock-note">Take the next small step.</span>
         </div>
       </section>
 
@@ -48,10 +53,10 @@
         <article class="panel focus-panel">
           <div class="panel-heading">
             <div>
-              <p class="eyebrow">Today's orbit</p>
+              <p class="eyebrow">Focus block</p>
               <h2>Daily focus task</h2>
             </div>
-            <span class="panel-icon" aria-hidden="true">◎</span>
+            <span class="panel-index" aria-hidden="true">01</span>
           </div>
           <label class="sr-only" for="focus-input">Your daily focus task</label>
           <input
@@ -68,10 +73,10 @@
         <article class="panel quote-panel">
           <div class="panel-heading">
             <div>
-              <p class="eyebrow">Signal boost</p>
-              <h2>One thought</h2>
+              <p class="eyebrow">Desk note</p>
+              <h2>One nudge</h2>
             </div>
-            <span class="panel-icon" aria-hidden="true">✦</span>
+            <span class="panel-index" aria-hidden="true">02</span>
           </div>
           <blockquote id="quote-text">Small steps still move your orbit.</blockquote>
           <button id="quote-button" class="text-button" type="button">New quote <span aria-hidden="true">↗</span></button>
@@ -80,10 +85,10 @@
         <article class="panel apod-panel" aria-labelledby="apod-heading">
           <div class="panel-heading">
             <div>
-              <p class="eyebrow">NASA signal</p>
+              <p class="eyebrow">NASA signal shelf</p>
               <h2 id="apod-heading">Picture of the day</h2>
             </div>
-            <span class="panel-icon" aria-hidden="true">✦</span>
+            <span class="panel-index" aria-hidden="true">03</span>
           </div>
           <p id="apod-status" class="helper-text" aria-live="polite">Loading NASA’s daily space image…</p>
           <div id="apod-content" class="apod-content" hidden>
@@ -101,7 +106,7 @@
         <article class="panel task-panel">
           <div class="panel-heading">
             <div>
-              <p class="eyebrow">Mission control</p>
+              <p class="eyebrow">Task bench</p>
               <h2>Today’s list</h2>
             </div>
             <span id="task-count" class="count-badge" aria-live="polite">0 tasks</span>
@@ -118,10 +123,10 @@
         <article class="panel links-panel">
           <div class="panel-heading">
             <div>
-              <p class="eyebrow">Launchpad</p>
+              <p class="eyebrow">Bookmarks</p>
               <h2>Quick links</h2>
             </div>
-            <span class="panel-icon" aria-hidden="true">↗</span>
+            <span class="panel-index" aria-hidden="true">05</span>
           </div>
           <div id="quick-links" class="quick-links" aria-label="Quick links"></div>
           <form id="link-form" class="link-form">
