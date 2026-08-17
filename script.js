@@ -190,10 +190,13 @@ function renderLinks() {
   quickLinks.replaceChildren();
 
   links.forEach((link) => {
+    const item = document.createElement("div");
     const anchor = document.createElement("a");
     const label = document.createElement("span");
     const arrow = document.createElement("span");
+    const deleteButton = document.createElement("button");
 
+    item.className = "quick-link-item";
     anchor.className = "quick-link";
     anchor.href = link.url;
     anchor.target = "_blank";
@@ -202,7 +205,17 @@ function renderLinks() {
     arrow.textContent = "↗";
     arrow.setAttribute("aria-hidden", "true");
     anchor.append(label, arrow);
-    quickLinks.append(anchor);
+
+    deleteButton.type = "button";
+    deleteButton.className = "link-delete";
+    deleteButton.textContent = "Remove";
+    deleteButton.setAttribute("aria-label", `Remove ${link.label} quick link`);
+    deleteButton.addEventListener("click", () => {
+      setLinks(links.filter((savedLink) => savedLink.id !== link.id));
+    });
+
+    item.append(anchor, deleteButton);
+    quickLinks.append(item);
   });
 }
 

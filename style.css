@@ -148,10 +148,15 @@ blockquote { margin: 0; font-size: clamp(1.45rem, 2.5vw, 1.9rem); font-weight: 7
 .task-item.is-done label { color: var(--muted); text-decoration: line-through; }
 .delete-button { border: 0; background: transparent; color: var(--coral); font-size: .78rem; font-weight: 800; }
 
-.quick-links { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; margin-bottom: .8rem; }
+.quick-links { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; }
+.quick-link-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; border: 1px solid var(--line); background: var(--paper-deep); }
 .quick-link { display: flex; align-items: center; justify-content: space-between; gap: .5rem; min-width: 0; padding: .78rem; border: 1px solid var(--line); color: var(--ink); text-decoration: none; font-size: .86rem; font-weight: 700; }
 .quick-link span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.quick-link-item:focus-within { outline: 2px solid var(--cyan); outline-offset: 2px; }
 .quick-link:hover { border-color: var(--blue); color: var(--blue); }
+.link-delete { align-self: stretch; padding: .55rem .48rem; border: 0; border-left: 1px solid var(--line); background: transparent; color: var(--coral); font-family: "DM Mono", monospace; font-size: .62rem; font-weight: 500; letter-spacing: .04em; text-transform: uppercase; }
+.link-delete:hover { background: var(--coral); color: var(--button-ink); }
+.link-delete:focus-visible, .quick-link:focus-visible { outline: 0; }
 .link-form { display: grid; grid-template-columns: .55fr 1.45fr auto; gap: .45rem; }
 .link-form button { font-size: .8rem; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
